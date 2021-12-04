@@ -45,4 +45,8 @@ public class Funcionario {
 
     private String cnh;
     private boolean disponivel;
+
+    public void isDisponivel(boolean b) {
+        disponivel = b;
+    }
 }

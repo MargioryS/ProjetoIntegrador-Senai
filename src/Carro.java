@@ -21,8 +21,8 @@ public class Carro {
         this.modelo = modelo;
     }
 
-    public String getAno() {
-        return ano;
+    public int getAno() {
+        return Integer.parseInt(ano);
     }
 
     public void setAno(String ano) {

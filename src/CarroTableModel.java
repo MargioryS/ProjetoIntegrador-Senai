@@ -48,7 +48,7 @@ public class CarroTableModel extends AbstractTableModel {
                 value = carro.getModelo();
                 break;
             case 2:
-                value = carro.getAno();
+                value = String.valueOf(carro.getAno());
                 break;
             case 3:
                 value = carro.getAutonomia();

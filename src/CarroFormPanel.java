@@ -38,7 +38,7 @@ public class CarroFormPanel extends JPanel {
                 } else {
                     txtId.setText(Integer.toString(Carro.getId()));
                     txtModelo.setText(Carro.getModelo());
-                    txtAno.setText(Carro.getAno());
+                    txtAno.setText(Integer.toString(Carro.getAno()));
                     txtAutonomia.setText(Carro.getAutonomia());
                 }
             }
