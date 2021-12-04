@@ -16,6 +16,7 @@ public class AppFrame extends JFrame {
 
     private ChamadoFormPanel chamadoFormPanel;
     private ChamadoListPanel chamadoListPanel;
+    private ChamadoDistanciaFormPanel chamadoDistanciaFormPanel;
 
     public AppFrame(){
         super(TITULO);
@@ -66,6 +67,11 @@ public class AppFrame extends JFrame {
         cardLayout.show(cardPanel, ChamadoListPanel.class.getName());
     };
 
+    public void mostrarChamadoDistanciaFormPanel(Chamado chamado){
+        chamadoDistanciaFormPanel.setChamado(chamado);
+        cardLayout.show(cardPanel, ChamadoDistanciaFormPanel.class.getName());
+    };
+
     public void mostrarChamadoFormPanel(Chamado chamado){
         chamadoFormPanel.setChamado(chamado);
         cardLayout.show(cardPanel, ChamadoFormPanel.class.getName());
@@ -92,5 +98,8 @@ public class AppFrame extends JFrame {
 
         chamadoFormPanel = new ChamadoFormPanel(this);
         cardPanel.add(chamadoFormPanel, ChamadoFormPanel.class.getName());
+
+        chamadoDistanciaFormPanel = new ChamadoDistanciaFormPanel(this);
+        cardPanel.add(chamadoDistanciaFormPanel, ChamadoDistanciaFormPanel.class.getName());
     }
 }

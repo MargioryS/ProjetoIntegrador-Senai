@@ -7,8 +7,9 @@ public class ChamadoTableModel extends AbstractTableModel {
     private List<Chamado> chamados = new ArrayList<>();
     private String[] colunas = new String[]{"Id",
             "Local",
-            "Descrição",
-            ""};
+            "Distancia",
+            "ID Func",
+            "ID Carro"};
 
     public ChamadoTableModel(List<Chamado> chamados) {
         this.chamados = chamados;
@@ -54,6 +55,9 @@ public class ChamadoTableModel extends AbstractTableModel {
                 break;
             case 4:
                 value = String.valueOf(chamado.getIdCarro());
+                break;
+            case 5:
+                value = String.valueOf(chamado.getDistancia());
                 break;
             default:
                 System.err.printf("[ERRO] Índice de coluna inválido: %d%n",

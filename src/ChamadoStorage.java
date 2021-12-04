@@ -7,6 +7,7 @@ public class ChamadoStorage {
 
     public static void inserir(Chamado chamado) {
         chamado.setId(incremento++);
+        chamado.setDistancia("0");
         chamados.add(chamado);
     }
 

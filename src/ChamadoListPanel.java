@@ -9,6 +9,7 @@ public class ChamadoListPanel extends JPanel {
     private AppFrame frame;
 
     private JButton btnCriar;
+    private JButton btnDistancia;
     private JButton btnEditar;
     private JButton btnRemover;
     private JButton btnVoltar;
@@ -52,6 +53,9 @@ public class ChamadoListPanel extends JPanel {
         criarBtnRemover();
         panel.add(btnRemover);
 
+        criarBtnDistancia();
+        panel.add(btnDistancia);
+
         add(panel, BorderLayout.NORTH);
 
         desabilitarBtns();
@@ -63,6 +67,16 @@ public class ChamadoListPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.mostrarInicialPanel();
+            }
+        });
+    }
+
+    private void criarBtnDistancia(){
+        btnDistancia = new JButton("Adicionar Distancia");
+        btnDistancia.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.mostrarChamadoDistanciaFormPanel(tableModel.getChamado(tabela.getSelectedRow()));
             }
         });
     }
@@ -129,12 +143,14 @@ public class ChamadoListPanel extends JPanel {
     private void habilitarBtns() {
         btnEditar.setEnabled(true);
         btnRemover.setEnabled(true);
+        btnDistancia.setEnabled(true);
     }
 
 
     private void desabilitarBtns() {
         btnEditar.setEnabled(false);
         btnRemover.setEnabled(false);
+        btnDistancia.setEnabled(false);
     }
 
     public void recarregar() {

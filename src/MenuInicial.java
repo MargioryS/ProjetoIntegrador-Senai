@@ -42,7 +42,6 @@ public class MenuInicial extends JPanel{
         panel.add(funcBtn);
         panel.add(CarroBtn);
         panel.add(chamadoBtn);
-        panel.add(relatorioBtn);
         add(panel, BorderLayout.CENTER);
     }
 
@@ -62,9 +61,7 @@ public class MenuInicial extends JPanel{
         funcBtn = new JButton("Funcionario");
         funcBtn.setPreferredSize(new Dimension(500, 40));
         chamadoBtn = new JButton("Chamado");
-        chamadoBtn.setPreferredSize(new Dimension(500, 40));
-        relatorioBtn = new JButton("Relatorio");
-        relatorioBtn.setPreferredSize(new Dimension(500, 40));
+        chamadoBtn.setPreferredSize(new Dimension(1000, 40));
 
         CarroBtn.addActionListener(new ActionListener() {
             @Override
@@ -87,12 +84,6 @@ public class MenuInicial extends JPanel{
             }
         });
 
-        relatorioBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
     }
 } //fim da classe InicialPanel
 
