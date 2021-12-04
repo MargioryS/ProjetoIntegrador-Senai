@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FuncionarioListPanel extends JPanel {
+public class ChamadoListPanel extends JPanel {
     private AppFrame frame;
 
     private JButton btnCriar;
@@ -13,10 +13,10 @@ public class FuncionarioListPanel extends JPanel {
     private JButton btnRemover;
     private JButton btnVoltar;
     private JTable tabela;
-    private FuncionarioTableModel tableModel;
+    private ChamadoTableModel tableModel;
 
-    public FuncionarioListPanel(AppFrame appFrame) {
-        this.frame = appFrame;
+    public ChamadoListPanel(AppFrame frame) {
+        this.frame = frame;
         setLayout(new BorderLayout(10,10));
         setBackground(Color.gray);
 
@@ -29,11 +29,10 @@ public class FuncionarioListPanel extends JPanel {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension(1280,30));
         panel.setBackground(Color.black);
-        JLabel titulo = new JLabel ("Funcionario");
+        JLabel titulo = new JLabel ("Chamados");
         titulo.setForeground(Color.white);;
         panel.add(titulo);
         add(panel, BorderLayout.NORTH);
-
     }
 
     private void criarComandosPanel() {
@@ -73,7 +72,7 @@ public class FuncionarioListPanel extends JPanel {
         btnCriar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.mostrarFuncionarioFormPanel(null);
+                frame.mostrarChamadoFormPanel(null);
             }
         });
     }
@@ -83,7 +82,7 @@ public class FuncionarioListPanel extends JPanel {
         btnEditar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.mostrarFuncionarioFormPanel(tableModel.getFuncionario(tabela.getSelectedRow()));
+                frame.mostrarChamadoFormPanel(tableModel.getChamado(tabela.getSelectedRow()));
             }
         });
     }
@@ -93,10 +92,10 @@ public class FuncionarioListPanel extends JPanel {
         btnRemover.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Funcionario funcionario = tableModel.getFuncionario(tabela.getSelectedRow());
-                int resposta = JOptionPane.showConfirmDialog(FuncionarioListPanel.this, "Deseja realmente remover?", "Todo App", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                Chamado chamado = tableModel.getChamado(tabela.getSelectedRow());
+                int resposta = JOptionPane.showConfirmDialog(ChamadoListPanel.this, "Deseja realmente remover?", "Todo App", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if (resposta == JOptionPane.YES_OPTION) {
-                    FuncionarioStorage.remover(funcionario);
+                    ChamadoStorage.remover(chamado);
                     recarregar();
                 }
             }
@@ -106,7 +105,7 @@ public class FuncionarioListPanel extends JPanel {
     private void criarTabelaPanel() {
         JPanel panel = new JPanel();
 
-        tableModel = new FuncionarioTableModel(FuncionarioStorage.listar());
+        tableModel = new ChamadoTableModel(ChamadoStorage.listar());
         tabela = new JTable(tableModel);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tabela.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -132,12 +131,14 @@ public class FuncionarioListPanel extends JPanel {
         btnRemover.setEnabled(true);
     }
 
+
     private void desabilitarBtns() {
         btnEditar.setEnabled(false);
         btnRemover.setEnabled(false);
     }
 
     public void recarregar() {
-        tableModel.carregar(FuncionarioStorage.listar());
+        tableModel.carregar(ChamadoStorage.listar());
     }
 }
+

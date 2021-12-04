@@ -83,7 +83,7 @@ public class MenuInicial extends JPanel{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                frame.mostrarChamadoListPanel();
             }
         });
 

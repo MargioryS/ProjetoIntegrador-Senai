@@ -1,9 +1,25 @@
 public class Chamado {
     private int id;
     private String local;
-    private int idVeiculo;
     private int idCarro;
+    private int idFunc;
     private double distancia;
+
+    public int getIdCarro() {
+        return idCarro;
+    }
+
+    public void setIdCarro(int idCarro) {
+        this.idCarro = idCarro;
+    }
+
+    public int getIdFunc() {
+        return idFunc;
+    }
+
+    public void setIdFunc(int idFunc) {
+        this.idFunc = idFunc;
+    }
 
     public int getId() {
         return id;
@@ -21,28 +37,12 @@ public class Chamado {
         this.local = local;
     }
 
-    public int getIdVeiculo() {
-        return idVeiculo;
+
+    public String getDistancia() {
+        return Double.toString(distancia);
     }
 
-    public void setIdVeiculo(int idVeiculo) {
-        this.idVeiculo = idVeiculo;
+    public void setDistancia(String distancia) {
+        this.distancia = Double.parseDouble(distancia);
     }
-
-    public int getIdCarro() {
-        return idCarro;
-    }
-
-    public void setIdCarro(int idCarro) {
-        this.idCarro = idCarro;
-    }
-
-    public double getDistancia() {
-        return distancia;
-    }
-
-    public void setDistancia(double distancia) {
-        this.distancia = distancia;
-    }
-
 }

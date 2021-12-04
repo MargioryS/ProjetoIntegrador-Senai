@@ -7,11 +7,15 @@ public class AppFrame extends JFrame {
     private JPanel cardPanel;
 
     private MenuInicial menuInicial;
+
     private CarroListPanel carroListPanel;
     private CarroFormPanel carroFormPanel;
 
     private FuncionarioListPanel funcionarioListPanel;
     private FuncionarioFormPanel funcionarioFormPanel;
+
+    private ChamadoFormPanel chamadoFormPanel;
+    private ChamadoListPanel chamadoListPanel;
 
     public AppFrame(){
         super(TITULO);
@@ -57,6 +61,16 @@ public class AppFrame extends JFrame {
         cardLayout.show(cardPanel, FuncionarioFormPanel.class.getName());
     }
 
+    public void mostrarChamadoListPanel(){
+        chamadoListPanel.recarregar();
+        cardLayout.show(cardPanel, ChamadoListPanel.class.getName());
+    };
+
+    public void mostrarChamadoFormPanel(Chamado chamado){
+        chamadoFormPanel.setChamado(chamado);
+        cardLayout.show(cardPanel, ChamadoFormPanel.class.getName());
+    };
+
     private void criarCards() {
         menuInicial = new MenuInicial(this);
         cardPanel.add(menuInicial, MenuInicial.class.getName());
@@ -72,5 +86,11 @@ public class AppFrame extends JFrame {
 
         funcionarioFormPanel = new FuncionarioFormPanel(this);
         cardPanel.add(funcionarioFormPanel, FuncionarioFormPanel.class.getName());
+
+        chamadoListPanel = new ChamadoListPanel(this);
+        cardPanel.add(chamadoListPanel, ChamadoListPanel.class.getName());
+
+        chamadoFormPanel = new ChamadoFormPanel(this);
+        cardPanel.add(chamadoFormPanel, ChamadoFormPanel.class.getName());
     }
 }
