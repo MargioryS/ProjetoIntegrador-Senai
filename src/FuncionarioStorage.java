@@ -54,7 +54,7 @@ public class FuncionarioStorage {
     }
 
     public static boolean atualizar(Funcionario funcionario) {
-        final String query = "UPDATE funcionario SET nome = ?, contato = ?, cnh = ?, disponivel = ?, WHERE id_funcionario = ?";
+        final String query = "UPDATE funcionario SET nome = ?, contato = ?, cnh = ?  WHERE id_funcionario = ?";
 
         Connection conexao = null;
         PreparedStatement statement = null;

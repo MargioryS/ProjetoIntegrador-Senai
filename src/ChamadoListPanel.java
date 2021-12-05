@@ -4,17 +4,25 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class ChamadoListPanel extends JPanel {
     private AppFrame frame;
 
     private JButton btnCriar;
+    private JButton btnCalcular;
     private JButton btnDistancia;
     private JButton btnEditar;
     private JButton btnRemover;
     private JButton btnVoltar;
     private JTable tabela;
+    private JTextField txtCo2Geral;
+    private JTextField txtCo2;
     private ChamadoTableModel tableModel;
+    private double co2;
+    private double co2Geral;
 
     public ChamadoListPanel(AppFrame frame) {
         this.frame = frame;
@@ -24,6 +32,7 @@ public class ChamadoListPanel extends JPanel {
         criarCabecalho();
         criarTabelaPanel();
         criarComandosPanel();
+        criarRodape();
     }
 
     public void criarCabecalho() {
@@ -34,6 +43,31 @@ public class ChamadoListPanel extends JPanel {
         titulo.setForeground(Color.white);;
         panel.add(titulo);
         add(panel, BorderLayout.NORTH);
+    }
+
+    public void criarRodape() {
+        JPanel panel = new JPanel();
+        panel.setPreferredSize(new Dimension(1280,150));
+        panel.setBackground(new Color(73, 153, 0));
+        add(panel, BorderLayout.SOUTH);
+
+        JLabel geral = new JLabel ("KG de C02 Gerado pelo carro: ");
+        geral.setForeground(Color.white);
+        panel.add(geral);
+
+        txtCo2Geral = new JTextField(String.valueOf(co2Geral));
+        txtCo2Geral.setPreferredSize(new Dimension(200, 25));
+        txtCo2Geral.setEditable(false);
+        panel.add(txtCo2Geral);
+
+        JLabel co2Text = new JLabel ("KG de C02 Gerado por todos os carro: ");
+        geral.setForeground(Color.white);
+        panel.add(co2Text);
+
+        txtCo2 = new JTextField(String.valueOf(co2));
+        txtCo2.setPreferredSize(new Dimension(200, 25));
+        txtCo2.setEditable(false);
+        panel.add(txtCo2);
     }
 
     private void criarComandosPanel() {
@@ -56,6 +90,9 @@ public class ChamadoListPanel extends JPanel {
         criarBtnDistancia();
         panel.add(btnDistancia);
 
+        criarBtnCalcular();
+        panel.add(btnCalcular);
+
         add(panel, BorderLayout.NORTH);
 
         desabilitarBtns();
@@ -67,6 +104,20 @@ public class ChamadoListPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.mostrarInicialPanel();
+            }
+        });
+    }
+
+    private void criarBtnCalcular(){
+        btnCalcular = new JButton("Calcular CO2");
+        btnCalcular.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                co2Geral = tableModel.co2Calc(tabela.getSelectedRow(), tabela.getSelectedRow());
+                txtCo2Geral.setText(String.valueOf(co2Geral));
+
+                co2 = tableModel.co2CalcGeral();
+                txtCo2.setText(String.valueOf(co2));
             }
         });
     }

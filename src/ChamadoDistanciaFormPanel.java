@@ -33,7 +33,7 @@ public class ChamadoDistanciaFormPanel extends JPanel {
             public void componentShown(ComponentEvent e) {
                     txtId.setText(Integer.toString(chamado.getId()));
                     txtLocal.setText(chamado.getLocal());
-                    txtDistancia.setText(chamado.getDistancia());
+                    txtDistancia.setText(String.valueOf(chamado.getDistancia()));
                     txtCarro.setText(Integer.toString(chamado.getIdCarro()));
                     txtFunc.setText(Integer.toString(chamado.getIdFunc()));
             }

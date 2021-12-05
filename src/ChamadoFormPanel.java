@@ -40,7 +40,7 @@ public class ChamadoFormPanel extends JPanel {
                 } else {
                     txtId.setText(Integer.toString(chamado.getId()));
                     txtLocal.setText(chamado.getLocal());
-                    txtDistancia.setText(chamado.getDistancia());
+                    txtDistancia.setText(String.valueOf(chamado.getDistancia()));
                     txtCarro.setText(Integer.toString(chamado.getIdCarro()));
                     txtFunc.setText(Integer.toString(chamado.getIdFunc()));
                 }
@@ -111,7 +111,7 @@ public class ChamadoFormPanel extends JPanel {
 
                     ChamadoStorage.inserir(novaChamado);
                     JOptionPane.showMessageDialog(ChamadoFormPanel.this,
-                            "Chamado incluído com sucesso",
+                            "Concluido",
                             "Todo App",
                             JOptionPane.INFORMATION_MESSAGE);
                 } else {
@@ -121,7 +121,7 @@ public class ChamadoFormPanel extends JPanel {
                     chamado.setIdCarro(Integer.parseInt(txtCarro.getText()));
                     ChamadoStorage.atualizar(ChamadoFormPanel.this.chamado);
                     JOptionPane.showMessageDialog(ChamadoFormPanel.this,
-                            "Chamado atualizado com sucesso",
+                            "Concluido",
                             "Todo App",
                             JOptionPane.INFORMATION_MESSAGE);
                 }

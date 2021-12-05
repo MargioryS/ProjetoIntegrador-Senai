@@ -38,8 +38,8 @@ public class Chamado {
     }
 
 
-    public String getDistancia() {
-        return Double.toString(distancia);
+    public double getDistancia() {
+        return distancia;
     }
 
     public void setDistancia(String distancia) {

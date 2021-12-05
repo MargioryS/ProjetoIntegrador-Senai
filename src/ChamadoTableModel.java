@@ -1,3 +1,7 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +39,7 @@ public class ChamadoTableModel extends AbstractTableModel {
     }
 
     @Override
-    public Object getValueAt(int rowIdx, int colIdx) {
+    public String getValueAt(int rowIdx, int colIdx) {
         String value = null;
 
         Chamado chamado = chamados.get(rowIdx);
@@ -48,7 +52,7 @@ public class ChamadoTableModel extends AbstractTableModel {
                 value = chamado.getLocal();
                 break;
             case 2:
-                value = chamado.getDistancia();
+                value = String.valueOf(chamado.getDistancia());
                 break;
             case 3:
                 value = String.valueOf(chamado.getIdFunc());
@@ -80,4 +84,47 @@ public class ChamadoTableModel extends AbstractTableModel {
         return chamado;
     }
 
+    public double autonomiaCarro(int i){
+        double autonomia = 0;
+        final String query = "SELECT autonomia FROM carro WHERE id_carro = ?";
+        Connection conexao = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try{
+            conexao = ConexaoFactory.getConexao();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, Integer.parseInt(getValueAt(i,4)));
+            resultSet = statement.executeQuery();
+            while(resultSet.next()) {
+                autonomia = resultSet.getDouble("autonomia");
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+            return autonomia;
+        }
+        return autonomia;
+    };
+
+    public double co2Calc(int c, int i){
+        double co2 = 0;
+        Chamado chamado = chamados.get(i);
+        double distancia = chamado.getDistancia();
+        double autonomia = autonomiaCarro(i);
+        double cg = (distancia*1) / autonomia;
+        co2 += (cg * 0.73 * 0.75 * 3.7);
+        return co2;
+    };
+
+    public double co2CalcGeral(){
+        double co2 = 0;
+
+        for(int i = 0;i < getRowCount(); i++) {
+            Chamado chamado = chamados.get(i);
+            double distancia = chamado.getDistancia();
+            double autonomia = autonomiaCarro(i);
+            double cg = (distancia*1) / autonomia;
+            co2 += (cg * 0.73 * 0.75 * 3.7);
+        }
+        return co2;
+    };
 }
