@@ -51,7 +51,7 @@ public class ChamadoListPanel extends JPanel {
         panel.setBackground(new Color(73, 153, 0));
         add(panel, BorderLayout.SOUTH);
 
-        JLabel geral = new JLabel ("KG de C02 Gerado pelo carro: ");
+        JLabel geral = new JLabel ("KG de C02 Gerado pelo chamado: ");
         geral.setForeground(Color.white);
         panel.add(geral);
 
@@ -60,7 +60,7 @@ public class ChamadoListPanel extends JPanel {
         txtCo2Geral.setEditable(false);
         panel.add(txtCo2Geral);
 
-        JLabel co2Text = new JLabel ("KG de C02 Gerado por todos os carro: ");
+        JLabel co2Text = new JLabel ("KG de C02 Gerado por todos os chamados: ");
         geral.setForeground(Color.white);
         panel.add(co2Text);
 
