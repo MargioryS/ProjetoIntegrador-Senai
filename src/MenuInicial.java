@@ -12,7 +12,6 @@ public class MenuInicial extends JPanel{
     private JButton CarroBtn;
     private AppFrame frame;
     private JButton chamadoBtn;
-    private JButton relatorioBtn;
 
     public MenuInicial(AppFrame appFrame) {
         this.frame = appFrame;

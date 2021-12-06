@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.sql.Date;
+import java.time.LocalDate;
 
 public class ChamadoFormPanel extends JPanel {
     private AppFrame frame;
@@ -20,6 +22,7 @@ public class ChamadoFormPanel extends JPanel {
     private JTextField txtFunc;
     private JButton btnSalvar;
     private JButton btnCancelar;
+    private LocalDate hoje;
 
     public ChamadoFormPanel(AppFrame frame) {
         this.frame = frame;
@@ -109,6 +112,7 @@ public class ChamadoFormPanel extends JPanel {
                     novaChamado.setIdCarro(Integer.parseInt(txtCarro.getText()));
                     novaChamado.setIdFunc(Integer.parseInt(txtFunc.getText()));
 
+                    novaChamado.setData( Date.valueOf( hoje = LocalDate.now()) );
                     ChamadoStorage.inserir(novaChamado);
                     JOptionPane.showMessageDialog(ChamadoFormPanel.this,
                             "Concluido",
@@ -119,6 +123,7 @@ public class ChamadoFormPanel extends JPanel {
                     chamado.setDistancia(txtDistancia.getText());
                     chamado.setIdFunc(Integer.parseInt(txtFunc.getText()));
                     chamado.setIdCarro(Integer.parseInt(txtCarro.getText()));
+                    chamado.setData(Date.valueOf(hoje = LocalDate.now()));
                     ChamadoStorage.atualizar(ChamadoFormPanel.this.chamado);
                     JOptionPane.showMessageDialog(ChamadoFormPanel.this,
                             "Concluido",

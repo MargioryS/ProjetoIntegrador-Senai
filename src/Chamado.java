@@ -1,9 +1,21 @@
+import java.sql.Date;
+import java.time.LocalDate;
+
 public class Chamado {
     private int id;
     private String local;
     private int idCarro;
     private int idFunc;
     private double distancia;
+    private Date data;
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
 
     public int getIdCarro() {
         return idCarro;

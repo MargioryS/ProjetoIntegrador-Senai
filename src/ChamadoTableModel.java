@@ -13,7 +13,8 @@ public class ChamadoTableModel extends AbstractTableModel {
             "Local",
             "Distancia",
             "ID Func",
-            "ID Carro"};
+            "ID Carro",
+            "Data"};
 
     public ChamadoTableModel(List<Chamado> chamados) {
         this.chamados = chamados;
@@ -61,7 +62,7 @@ public class ChamadoTableModel extends AbstractTableModel {
                 value = String.valueOf(chamado.getIdCarro());
                 break;
             case 5:
-                value = String.valueOf(chamado.getDistancia());
+                value = String.valueOf(chamado.getData());
                 break;
             default:
                 System.err.printf("[ERRO] Índice de coluna inválido: %d%n",

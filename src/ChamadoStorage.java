@@ -1,8 +1,5 @@
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +7,9 @@ public class ChamadoStorage {
 
 
     public static boolean inserir(Chamado chamado) {
-        final String query = "INSERT INTO chamado (lugar, id_carro, id_funcionario, distancia) VALUES (?, ?, ?, 0)";
+        LocalDate hoje = LocalDate.now();
+
+        final String query = "INSERT INTO chamado (lugar, id_carro, id_funcionario, distancia, data) VALUES (?, ?, ?, 0,?)";
 
         Connection conexao = null;
         PreparedStatement statement = null;
@@ -23,6 +22,7 @@ public class ChamadoStorage {
             statement.setString(1, chamado.getLocal());
             statement.setInt(2, chamado.getIdCarro());
             statement.setInt(3,chamado.getIdFunc());
+            statement.setDate(4, Date.valueOf(hoje));
             statement.execute();
 
             resultSet = statement.getGeneratedKeys();
@@ -82,7 +82,6 @@ public class ChamadoStorage {
                 }
             }
         }
-
         return true;
     }
 
@@ -137,6 +136,7 @@ public class ChamadoStorage {
                 chamado.setIdCarro(resultSet.getInt("Id_carro"));
                 chamado.setIdFunc(resultSet.getInt("Id_Funcionario"));
                 chamado.setDistancia(resultSet.getString("distancia"));
+                chamado.setData(resultSet.getDate("data"));
                 chamados.add(chamado);
             }
         } catch (Exception e) {
